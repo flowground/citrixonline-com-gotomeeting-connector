@@ -1,0 +1,28 @@
+{
+    "type": "object",
+    "properties": {
+        "Authorization": {
+            "required": true,
+            "type": "string"
+        },
+        "groupKey": {
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+        },
+        "history": {
+            "required": true,
+            "type": "boolean"
+        },
+        "startDate": {
+            "required": true,
+            "type": "string",
+            "format": "date-time"
+        },
+        "endDate": {
+            "required": true,
+            "type": "string",
+            "format": "date-time"
+        }
+    }
+}

@@ -1,0 +1,476 @@
+{
+    "title": "GoToMeeting",
+    "description": "<br>The GoToMeeting API provides seamless integration of GoToMeeting provisioning and meeting management into your existing infrastructure or third party applications.<br><br>For customers, the ability to add, suspend or delete an organizer in your GoToMeeting Corporate account from within your primary management systems simplifies and streamlines the entire process of account management. The ability to monitor meeting schedules, history and active meeting status allows managers to leverage GoToMeeting activities through your primary applications.<br><br>For third parties, the ability to create, update or delete a meeting from within your application makes real-time collaboration possible for your customers. The ability to update meeting schedules, view history and scheduled meetings, and view attendees from past meetings allows you to enhance your users' experience and the value of your applications.",
+    "docsUrl": "https://developer.citrixonline.com/",
+    "url": "https://api.apis.guru/v2/specs/citrixonline.com/gotomeeting/1.0.0/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://api.citrixonline.com/G2M/rest",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "get_groups": {
+            "main": "./lib/actions/get_groups.js",
+            "title": "Get groups",
+            "description": "List all groups for an account. This API call is only available to users with the admin role.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_groups.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_groups__groupKey__attendees": {
+            "main": "./lib/actions/get_groups__groupKey__attendees.js",
+            "title": "Get attendees by group",
+            "description": "Returns all attendees for all meetings within specified date range held by organizers within the specified group. This API call is only available to users with the admin role. This API call can be used only for groups with maximum 50 organizers.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_groups__groupKey__attendees.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_groups__groupKey__historicalMeetings": {
+            "main": "./lib/actions/get_groups__groupKey__historicalMeetings.js",
+            "title": "Get historical meetings by group",
+            "description": "Get historical meetings for the specified group that started within the specified date/time range. This API call is only available to users with the admin role. This API call is restricted to groups with a maximum of 50 organizers. Remark: Meetings which are still ongoing at the time of the request are NOT contained in the result array.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_groups__groupKey__historicalMeetings.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_groups__groupKey__meetings": {
+            "main": "./lib/actions/get_groups__groupKey__meetings.js",
+            "title": "DEPRECATED: Get historical meetings by group",
+            "description": "DEPRECATED: Please use the new API calls 'Get historical meetings by group' and 'Get upcoming meetings by group'. Get meetings for a specified group. Additional filters can be used to view only meetings within a specified date range. This API call is only available to users with the admin role.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_groups__groupKey__meetings.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_groups__groupKey__organizers": {
+            "main": "./lib/actions/get_groups__groupKey__organizers.js",
+            "title": "Get organizers by group",
+            "description": "Returns all the organizers within a specific group. This API call is only available to users with the admin role.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_groups__groupKey__organizers.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_groups__groupKey__organizers": {
+            "main": "./lib/actions/post_groups__groupKey__organizers.js",
+            "title": "Create organizer in group",
+            "description": "Creates a new organizer and sends an email to the email address defined in request. This API call is only available to users with the admin role. You may also pass 'G2W' or 'G2T' or 'OPENVOICE' as productType variables, creating organizers for those products. A G2W or G2T organizer will also have access to G2M.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_groups__groupKey__organizers.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_groups__groupKey__upcomingMeetings": {
+            "main": "./lib/actions/get_groups__groupKey__upcomingMeetings.js",
+            "title": "Get upcoming meetings by group",
+            "description": "Get upcoming meetings for a specified group. This API call is only available to users with the admin role. This API call can be used only for groups with maximum 50 organizers.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_groups__groupKey__upcomingMeetings.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_historicalMeetings": {
+            "main": "./lib/actions/get_historicalMeetings.js",
+            "title": "Get historical meetings",
+            "description": "Get historical meetings for the currently authenticated organizer that started within the specified date/time range. Remark: Meetings which are still ongoing at the time of the request are NOT contained in the result array.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_historicalMeetings.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_meetings": {
+            "main": "./lib/actions/get_meetings.js",
+            "title": "DEPRECATED: Get historical meetings",
+            "description": "DEPRECATED: Please use the new API calls 'Get historical meetings' and 'Get upcoming meetings'.  Gets historical meetings for the current authenticated organizer. Requires date range for filtering results to only meetings within specified dates. History searches will contain the parameter 'meetingInstanceKey' which is used in conjunction with the call 'Get Attendees by Meeting' to get attendee information for a past meeting.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_meetings.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_meetings": {
+            "main": "./lib/actions/post_meetings.js",
+            "title": "Create meeting",
+            "description": "Create a new meeting based on the parameters specified.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_meetings.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "delete_meetings__meetingId_": {
+            "main": "./lib/actions/delete_meetings__meetingId_.js",
+            "title": "Delete meeting",
+            "description": "Deletes the meeting identified by the meetingId.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/delete_meetings__meetingId_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_meetings__meetingId_": {
+            "main": "./lib/actions/get_meetings__meetingId_.js",
+            "title": "Get meeting",
+            "description": "Returns the meeting details for the specified meeting.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_meetings__meetingId_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "put_meetings__meetingId_": {
+            "main": "./lib/actions/put_meetings__meetingId_.js",
+            "title": "Update meeting",
+            "description": "Updates an existing meeting specified by meetingId.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/put_meetings__meetingId_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_meetings__meetingId__attendees": {
+            "main": "./lib/actions/get_meetings__meetingId__attendees.js",
+            "title": "Get attendees by meeting",
+            "description": "List all attendees for specified meetingId of historical meeting. The historical meetings can be fetched using 'Get historical meetings', 'Get historical meetings by organizer', and 'Get historical meetings by group'. For users with the admin role this call returns attendees for any meeting. For any other user the call will return attendees for meetings on which the user is a valid organizer.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_meetings__meetingId__attendees.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_meetings__meetingId__start": {
+            "main": "./lib/actions/get_meetings__meetingId__start.js",
+            "title": "Start meeting",
+            "description": "Returns a host URL that can be used to start a meeting. When this URL is opened in a web browser, the GoToMeeting client will be downloaded and launched and the meeting will start. The end user is not required to login to a client.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_meetings__meetingId__start.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "delete_organizers": {
+            "main": "./lib/actions/delete_organizers.js",
+            "title": "Delete organizer by email",
+            "description": "Deletes the individual organizer specified by the email address. This API call is only available to users with the admin role.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/delete_organizers.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_organizers": {
+            "main": "./lib/actions/get_organizers.js",
+            "title": "Get organizer by email / Get all organizers",
+            "description": "Gets the individual organizer specified by the organizer's email address. If an email address is not specified, all organizers are returned. This API call is only available to users with the admin role.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_organizers.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_organizers": {
+            "main": "./lib/actions/post_organizers.js",
+            "title": "Create organizer",
+            "description": "Creates a new organizer and sends an email to the email address defined in the request. This API call is only available to users with the admin role. You may also pass 'G2W' or 'G2T' or 'OPENVOICE' as productType variables, creating organizers for those products. A G2W or G2T organizer will also have access to G2M.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_organizers.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "delete_organizers__organizerKey_": {
+            "main": "./lib/actions/delete_organizers__organizerKey_.js",
+            "title": "Delete organizer",
+            "description": "Deletes the individual organizer specified by the organizer key. This API call is only available to users with the admin role.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/delete_organizers__organizerKey_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_organizers__organizerKey_": {
+            "main": "./lib/actions/get_organizers__organizerKey_.js",
+            "title": "Get organizer",
+            "description": "Returns the individual organizer specified by the key. This API call is only available to users with the admin role. Non-admin users can only make this call for their own organizerKey.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_organizers__organizerKey_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "put_organizers__organizerKey_": {
+            "main": "./lib/actions/put_organizers__organizerKey_.js",
+            "title": "Update organizer",
+            "description": "Updates the products of the specified organizer. To add a product (G2M, G2W, G2T, OPENVOICE) for the organizer, the call must be sent once for each product you want to add. To remove all products for the organizer, set status to 'suspended'. The call is limited to users with the admin role.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/put_organizers__organizerKey_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_organizers__organizerKey__attendees": {
+            "main": "./lib/actions/get_organizers__organizerKey__attendees.js",
+            "title": "Get attendees by organizer",
+            "description": "Lists all attendees for all meetings within a specified date range for a specified organizer. This API call is only available to users with the admin role.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_organizers__organizerKey__attendees.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_organizers__organizerKey__historicalMeetings": {
+            "main": "./lib/actions/get_organizers__organizerKey__historicalMeetings.js",
+            "title": "Get historical meetings by organizer",
+            "description": "Get historical meetings for the specified organizer that started within the specified date/time range. Remark: Meetings which are still ongoing at the time of the request are NOT contained in the result array.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_organizers__organizerKey__historicalMeetings.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_organizers__organizerKey__meetings": {
+            "main": "./lib/actions/get_organizers__organizerKey__meetings.js",
+            "title": "DEPRECATED: Get meetings by organizer",
+            "description": "DEPRECATED: Please use the new API calls 'Get historical meetings by organizer' and 'Get upcoming meetings by organizer'. Gets future (scheduled) or past (history) meetings for a specified organizer. Include 'history=true' and the past start and end dates in the URL to retrieve past meetings. Enter 'scheduled=true' (without dates) to get scheduled meetings.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_organizers__organizerKey__meetings.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_organizers__organizerKey__upcomingMeetings": {
+            "main": "./lib/actions/get_organizers__organizerKey__upcomingMeetings.js",
+            "title": "Get upcoming meetings by organizer",
+            "description": "Get upcoming meetings for a specified organizer. This API call is only available to users with the admin role.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_organizers__organizerKey__upcomingMeetings.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_upcomingMeetings": {
+            "main": "./lib/actions/get_upcomingMeetings.js",
+            "title": "Get upcoming meetings",
+            "description": "Gets upcoming meetings for the current authenticated organizer.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_upcomingMeetings.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

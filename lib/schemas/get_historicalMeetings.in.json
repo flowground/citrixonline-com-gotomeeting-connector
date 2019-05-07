@@ -1,0 +1,19 @@
+{
+    "type": "object",
+    "properties": {
+        "Authorization": {
+            "required": true,
+            "type": "string"
+        },
+        "startDate": {
+            "required": true,
+            "type": "string",
+            "format": "date-time"
+        },
+        "endDate": {
+            "required": true,
+            "type": "string",
+            "format": "date-time"
+        }
+    }
+}

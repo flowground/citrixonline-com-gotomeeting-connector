@@ -1,0 +1,64 @@
+{
+    "type": "object",
+    "properties": {
+        "Authorization": {
+            "required": true,
+            "type": "string"
+        },
+        "meetingId": {
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+        },
+        "requestBody": {
+            "description": "Describes the information required to update a meeting.",
+            "properties": {
+                "conferencecallinfo": {
+                    "description": "A required string. Can be one of the following options: <br>PSTN (PSTN only), <br>Free (PSTN and VoIP), <br>Hybrid, (PSTN and VoIP), <br>Private (you provide numbers and access code), or <br>VoIP (VoIP only). <br>You may also enter plain text for numbers and access codes with a limit of 255 characters",
+                    "type": "string"
+                },
+                "endtime": {
+                    "description": "The ending time of the meeting. A required ISO8601 UTC string, e.g. 2015-07-01T22:00:00Z",
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "meetingtype": {
+                    "description": "The meeting type",
+                    "enum": [
+                        "immediate",
+                        "recurring",
+                        "scheduled"
+                    ],
+                    "type": "string"
+                },
+                "passwordrequired": {
+                    "description": "Indicates whether a password is required to join the meeting. Required parameter",
+                    "type": "boolean"
+                },
+                "starttime": {
+                    "description": "The starting time of the meeting. A required ISO8601 UTC string, e.g. 2015-07-01T22:00:00Z",
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "subject": {
+                    "description": "A description of the meeting. 100 characters maximum. The characters '&gt;' and '&lt;' have to be replaced with the corresponding html character code (&amp;gt; for &#39;&gt;&#39; and &amp;lt; for &#39;&lt;&#39;)",
+                    "type": "string"
+                },
+                "timezonekey": {
+                    "description": "DEPRECATED. Must be provided and set to empty string ''",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "subject",
+                "starttime",
+                "endtime",
+                "passwordrequired",
+                "conferencecallinfo",
+                "timezonekey",
+                "meetingtype"
+            ],
+            "type": "object"
+        }
+    }
+}

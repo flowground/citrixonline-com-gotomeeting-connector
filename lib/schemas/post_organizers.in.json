@@ -1,0 +1,43 @@
+{
+    "type": "object",
+    "properties": {
+        "Authorization": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Describes the information required to create an organizer, with or without assigning a group.",
+            "properties": {
+                "firstName": {
+                    "description": "The first name of the organizer",
+                    "type": "string"
+                },
+                "lastName": {
+                    "description": "The surname of the organizer",
+                    "type": "string"
+                },
+                "organizerEmail": {
+                    "description": "The email address of the organizer",
+                    "type": "string"
+                },
+                "productType": {
+                    "description": "A product the organizer has access to, can be 'G2M', 'G2W', 'G2T' or 'OPENVOICE'",
+                    "enum": [
+                        "G2M",
+                        "G2T",
+                        "G2W",
+                        "OPENVOICE"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "organizerEmail",
+                "firstName",
+                "lastName",
+                "productType"
+            ],
+            "type": "object"
+        }
+    }
+}

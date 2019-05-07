@@ -1,0 +1,28 @@
+{
+    "type": "object",
+    "properties": {
+        "Authorization": {
+            "required": true,
+            "type": "string"
+        },
+        "organizerKey": {
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+        },
+        "scheduled": {
+            "type": "boolean"
+        },
+        "history": {
+            "type": "boolean"
+        },
+        "startDate": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "endDate": {
+            "type": "string",
+            "format": "date-time"
+        }
+    }
+}

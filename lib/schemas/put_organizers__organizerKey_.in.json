@@ -1,0 +1,37 @@
+{
+    "type": "object",
+    "properties": {
+        "Authorization": {
+            "required": true,
+            "type": "string"
+        },
+        "organizerKey": {
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+        },
+        "requestBody": {
+            "description": "Describes the status of an organizer, i.e. whether they are able to host meetings.",
+            "properties": {
+                "productType": {
+                    "description": "The product you want to add to the organizer. The call must be sent once for each product you want to add",
+                    "enum": [
+                        "G2M",
+                        "G2T",
+                        "G2W",
+                        "OPENVOICE"
+                    ],
+                    "type": "string"
+                },
+                "status": {
+                    "description": "The status of the organizer can be set to. Use 'suspended' to remove all products. The formerly used status 'active' is now DEPRECATED for this call. To activate the organizer please assign a product. In this case do not pass this parameter",
+                    "enum": [
+                        "suspended"
+                    ],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}
